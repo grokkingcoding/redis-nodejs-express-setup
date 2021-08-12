@@ -10,7 +10,7 @@
 
 2. cd Desktop (if you want to clone the repo on to your Desktop)
 
-3. git clone repo https://github.com/grokkingcoding/nodejs-express-middleware-demos.git
+3. git clone repo https://github.com/grokkingcoding/redis-nodejs-express-setup.git
 
 4. cd into the repo folder (the folder you just cloned)
 
@@ -34,14 +34,21 @@
 
 5. redis-cli ping (afterwards, you should receive a message 'PONG' printed in your terminal - that means redis is running ok on your mac)
 
-- You would follow a similar procedure to instal redis on your server for example like a ec2 server
-- Next, we will setup an express app to act as a middle layer between the redis and mongodb on your machine.
-- The express app will need the following packages to interact with redis and mongodb on your machine: node-redis and mongoose
-- redis is a key value pair store and if we use node-redis to get a value we can do this:
+6. You would follow a similar procedure to instal redis on your server for example like a ec2 server
 
-- get(“grok”, (err, val) => console.log(val))
-- If you have set your grok key to a value of coding, the console will print coding.
-- To setup node-redis in express:
+7. Next, we will setup an express app to act as a middle layer between the redis and mongodb on your machine.
+
+8. The express app will need the following packages to interact with redis and mongodb on your machine: node-redis
+
+9. redis is a key value pair store and if we use node-redis to get a value we can do this:
+
+```
+client.get(grokking”, (err, val) => console.log(val))
+```
+
+10. If you have set your grokking key to a value of 'coding', the console will print 'coding'.
+
+11. To setup node-redis in express:
 
 ```
 
@@ -60,12 +67,22 @@ client.get("key", console.log);
 
 ```
 
-- Stringify the object before setting it into redis otherwise you will get back an object object when you try to get the key value again
-- And when we get back the value with do json parse
+12. Stringify the object before setting it into redis otherwise you will get back an object object when you try to get the key value again
 
-- to promisify a function
-- Import util from nodejs standard library
-- client.get = util.promisify(client.get)
-- Here we are turning the callback of the function into a promise instead
-- So now we can use something like this:
-- let data = await client.get(“some key”)
+13. And when we get back the value with do json parse
+
+14. to promisify a function - import util from nodejs standard library
+
+15. Then write this line of code in your index.js (refer to the index.js file):
+
+```
+client.get = util.promisify(client.get);
+```
+
+16. After doing that, we are turning the callback of the function into a promise instead
+
+17. So now we can use something like this:
+
+```
+let data = await client.get(“some key”);
+```

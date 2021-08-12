@@ -86,3 +86,13 @@ client.get = util.promisify(client.get);
 ```
 let data = await client.get(“some key”);
 ```
+
+### To test redis
+
+1. open your browser and go to http://localhost:3333/
+
+2. type in your address bar: http://localhost:3333/set (this will set the key to 'grokking' and the value to 'coding')
+
+3. type in your address bar: http://localhost:3333/get (this will return the value 'coding to your browser')
+
+4. type in your address bar: http://localhost:3333/clear_all (this will clear all the data in your redis cache)
